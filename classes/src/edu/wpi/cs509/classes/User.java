@@ -15,6 +15,10 @@ public abstract class User{
 		
 	}
 	
+	public void test(){
+		
+	}
+	
 	public void logOut(){
 		
 	}
