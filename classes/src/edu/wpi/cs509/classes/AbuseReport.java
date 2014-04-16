@@ -13,6 +13,10 @@ public class AbuseReport{
 	private boolean hasAccess; 
 	
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getLogID(){
 		return logID;		
 	}
