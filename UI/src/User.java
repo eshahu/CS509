@@ -18,11 +18,22 @@ public abstract class User{
 		this.userName = userName;
 		this.password = password;
 		this.email = email;
+		this.hasAccess = true;
+	}
+	 
+	public User(String userName, String email){
+		this.userName = userName;
+		this.email = email;
+		this.hasAccess = false;
+	}
+	 
+	public User(String userName){
+		this.userName = userName;
 		this.hasAccess = false;
 	}
 	
-	public void logIn(){
-		
+	public Boolean logIn(){
+		return true;
 	}
 	
 	
