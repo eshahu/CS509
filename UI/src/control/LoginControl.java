@@ -110,6 +110,7 @@ public class LoginControl extends HttpServlet {
 				
 				System.out.println("use controller to jump to main.jsp");
 				
+				System.out.println("use ");
 //				//when jump to wel.jsp, organize the data which we want to show in wel.jsp
 //				ArrayList<UserBean> al = ubo.getResultByPage(1);
 //				int pageCount = ubo.getPageCount();
