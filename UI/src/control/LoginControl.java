@@ -73,6 +73,7 @@ public class LoginControl extends HttpServlet {
 			// call UserBeanControl, create an instance
 			UserBeanOperations ubo = new UserBeanOperations();
 			//call the method of UserBeanControl
+			System.out.println(name);
 			if (ubo.checkUser(name, password)) {
 				
 				//legal user
@@ -120,10 +121,13 @@ public class LoginControl extends HttpServlet {
 				
 				//it's like sendRedirect, but more efficient
 				//and keep the content in the request
-				request.getRequestDispatcher("UserAccount.jsp").forward(request, response);
+				
+				 
+				request.getRequestDispatcher("home.jsp").forward(request, response);
+				
 			} else {
 				// indicate user is not existing
-				request.getRequestDispatcher("home.jsp").forward(request, response);
+				request.getRequestDispatcher("ReportReview.jsp").forward(request, response);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
