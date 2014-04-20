@@ -36,4 +36,20 @@ public class TestAbuseReport {
 		assertEquals("Retrieved Wrong LogID ", result, "123");		
 	}
 
+	/**
+	 * Check that submission status is updated correctly
+	 *
+	 */
+	@Test
+	public void testIsSubmitted() {
+		AbuseReport aReport = Mockito.mock(AbuseReport.class);
+		Mockito.when(aReport.isSubmitted()).thenReturn(true);
+		boolean firstresult = aReport.isSubmitted();
+		assertTrue(firstresult);	
+		
+		Mockito.when(aReport.isSubmitted()).thenReturn(false);
+		boolean secresult = aReport.isSubmitted();
+		assertFalse(secresult);	
+	}
+
 }
