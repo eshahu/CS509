@@ -11,6 +11,16 @@ public class AnonymousUser extends User{
 		// TODO Auto-generated constructor stub
 	}
 
+	public AnonymousUser(String userName, String password) {
+		super(userName, password);
+		// TODO Auto-generated constructor stub
+	}
+
+	public AnonymousUser(String userName) {
+		super(userName);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @param ar
 	 * @param an
