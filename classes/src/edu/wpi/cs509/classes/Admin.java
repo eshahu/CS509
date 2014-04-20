@@ -7,6 +7,12 @@ package edu.wpi.cs509.classes;
 public class Admin extends User{
 	
 	
+	public Admin(String userName, String password, String email) {
+		super(userName, password, email);
+		this.hasAccess = true;
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @param userName
 	 */

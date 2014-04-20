@@ -6,6 +6,11 @@ package edu.wpi.cs509.classes;
  */
 public class AnonymousUser extends User{
 	
+	public AnonymousUser(String userName, String password, String email) {
+		super(userName, password, email);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @param ar
 	 * @param an
