@@ -31,7 +31,7 @@
 	</div>
 	<div class="col-md-1"></div>
 	<div class="jumbotron col-md-5">
-		<form class="form-signin" role="form" action="checkLogin.jsp" type="POST">
+		<form class="form-signin" role="form" action="LoginControl" method="POST">
 			<h2 class="form-signin-heading">Sign In</h2>
 			<%
 				String loginfailed = (String) session.getAttribute("loginfailed");
@@ -40,8 +40,9 @@
 				}
 			%>
 			<input type="email" class="form-control" placeholder="Email address"
-				required="" autofocus="" name=username> <input type="password"
-				class="form-control" placeholder="Password" required="" name="password"> <br>
+				required="" autofocus="" name=username> 
+			<input type="password" class="form-control" placeholder="Password" 
+				required="" name="password"> <br>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
 				in</button>
 		</form>
