@@ -21,7 +21,7 @@ public class AbuseReport{
 		this.abuseName = abuseName;
 		this.user = user;
 		this.isSubmitted = isSubmitted;
-		retrieveFilenames()
+		retrieveFilenames();
 	}
 
 	/**

@@ -7,7 +7,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-import edu.wpi.cs509.classes.AnonymousUser;
+import classes.AnonymousUser;
 
 
 /** Simple servlet for testing. Generates HTML instead of plain
