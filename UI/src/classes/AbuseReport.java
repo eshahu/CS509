@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author shahe
@@ -11,6 +13,7 @@ public class AbuseReport{
 	private String abuseName;
 	private User user;
 	private boolean isSubmitted;
+	private List<File> filenames;
 	
 
 	public AbuseReport (String logID, String abuseName, User user, boolean isSubmitted){
@@ -18,6 +21,7 @@ public class AbuseReport{
 		this.abuseName = abuseName;
 		this.user = user;
 		this.isSubmitted = isSubmitted;
+		retrieveFilenames()
 	}
 
 	/**
@@ -58,6 +62,23 @@ public class AbuseReport{
 	
 	public void setUser (User user){
 		this.user = user;
+	}
+	
+	private void retrieveFilenames() {
+		/* Retrieve list of files associated with this abuse report from database */
+		this.filenames = new LinkedList<File>();
+		this.filenames.add(new File("temp"));
+		this.filenames.add(new File("temp2"));
+		this.filenames.add(new File("temp3"));
+	}
+
+	
+	public List<File> getFilenames() {
+		return filenames;
+	}
+
+	public void setFilenames(List<File> filenames) {
+		this.filenames = filenames;
 	}
 	
 }
