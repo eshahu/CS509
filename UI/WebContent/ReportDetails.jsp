@@ -1,5 +1,6 @@
 <%@ include file="header.jsp"%>
-
+<%
+%>
 <div class="row">
 	<div class="jumbotron col-md-12">
 		<form class="form" role="form">
@@ -8,6 +9,14 @@
 				style="padding: 10px; margin-bottom: 5px;">
 				<input type="radio" name="file" value="abusereport"> Abuse
 				Report
+				<%
+					String logID = (String) request.getAttribute("logID");
+					out.println("lalala" + logID);
+				%>
+				<%
+					String name = (String) request.getAttribute("name");
+					out.println(name);
+				%>
 			</div>
 			<div class="jumbotron jumptron-inner"
 				style="padding: 10px; margin-bottom: 5px;">

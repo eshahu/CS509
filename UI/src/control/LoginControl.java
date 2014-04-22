@@ -128,7 +128,7 @@ public class LoginControl extends HttpServlet {
 				
 			} else {
 				// indicate user is not existing
-				request.getRequestDispatcher("ReportReview.jsp").forward(request, response);
+				request.getRequestDispatcher("UserAccount.jsp").forward(request, response);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

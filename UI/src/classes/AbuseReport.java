@@ -21,6 +21,14 @@ public class AbuseReport{
 		this.abuseName = abuseName;
 		this.user = user;
 		this.isSubmitted = isSubmitted;
+		this.filenames = new LinkedList<File>();
+	}
+	
+	public AbuseReport(String logID){
+		this.logID = logID;
+		/* retrieve abuse report information from database... */
+		this.abuseName = "temp";
+		this.isSubmitted = true;
 		retrieveFilenames();
 	}
 
