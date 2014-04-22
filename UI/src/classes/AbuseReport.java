@@ -14,7 +14,7 @@ public class AbuseReport{
 	private User user;
 	private boolean isSubmitted;
 	private List<File> filenames;
-	
+	private String correctiveActionsDoc;
 
 	public AbuseReport (String logID, String abuseName, User user, boolean isSubmitted){
 		this.logID = logID;
@@ -75,8 +75,8 @@ public class AbuseReport{
 	private void retrieveFilenames() {
 		/* Retrieve list of files associated with this abuse report from database */
 		this.filenames = new LinkedList<File>();
-		this.filenames.add(new File("temp"));
-		this.filenames.add(new File("temp2"));
+		this.filenames.add(new File("Diposition Letter"));
+		this.filenames.add(new File("Decision Letter"));
 		this.filenames.add(new File("temp3"));
 	}
 
