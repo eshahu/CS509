@@ -5,6 +5,7 @@
 <%
 	String logID = (String) request.getAttribute("logID");
 	String name = (String) request.getAttribute("name");
+	String username = (String) request.getAttribute("username");
 	List<File> files = (List<File>) request.getAttribute("files");
 %>
 <script>
@@ -22,6 +23,9 @@
 				Abuse Report Details -
 				<%
 				out.println(logID);
+			%>
+				<%
+				out.println(username);
 			%>
 			</h2>
 			<div class="jumbotron jumptron-inner"
@@ -60,10 +64,13 @@
 
 <div class="row">
 	<div class="jumbotron col-md-12">
-		<form class="form-signin" role="form">
+		<form class="form-signin" role="form" action="UploadFileControl"
+			method="post" enctype="multipart/form-data">
 			<h2 class="form-purpose-heading">Upload New File</h2>
-			<input type="file" class="form-control" placeholder="Select file"
-				required="" autofocus=""> <br>
+			<input type="hidden" name="logID" value="<% out.println(logID); %>">
+			<input type="hidden" name="username" value="<% out.println(username); %>">
+			<input type="file" class="form-control" name="file"
+				placeholder="Select file" required="" autofocus=""> <br>
 			<button class="btn btn-lg btn-primary" type="submit">Upload</button>
 		</form>
 	</div>

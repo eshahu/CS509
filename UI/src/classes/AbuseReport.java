@@ -79,6 +79,11 @@ public class AbuseReport{
 		this.filenames.add(new File("Decision Letter"));
 		this.filenames.add(new File("temp3"));
 	}
+	
+	private void uploadNewFile(File file) {
+		this.filenames.add(file);
+		/* store in database */
+	}
 
 	
 	public List<File> getFilenames() {

@@ -1,5 +1,14 @@
 package classes;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import javax.servlet.http.Part;
+
+import model.DBUtil;
+
 
 
 /**
@@ -11,6 +20,12 @@ public class Supervisor extends User{
 	
 	public Supervisor(String userName, String password, String email) {
 		super(userName, password, email);
+		setAccess(true);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Supervisor(String userName) {
+		super(userName);
 		setAccess(true);
 		// TODO Auto-generated constructor stub
 	}
@@ -61,9 +76,35 @@ public class Supervisor extends User{
 	
 	/**
 	 * @param fileType
+	 * @throws IOException 
 	 */
-	public void uploadFile(String fileType){
-		
+	public void uploadFile(String logID, Part filePart) throws IOException{
+	    String filename = getFilename(filePart);
+	    InputStream filecontent = filePart.getInputStream();
+	    byte[] buffer = new byte[8 * 1024];
+	    try {
+	    	OutputStream output = new FileOutputStream(DBUtil.FILESERVER_DIR + logID + "_" + filename);
+	    	try {
+	    		int bytesRead;
+	    		while ((bytesRead = filecontent.read(buffer)) != -1) {
+	    			output.write(buffer, 0, bytesRead);
+	    		}
+	    	} finally {
+	    		output.close();
+	    	}
+	    } finally {
+	    	filecontent.close();
+	    }
+	}
+
+	private static String getFilename(Part part) {
+	    for (String cd : part.getHeader("content-disposition").split(";")) {
+	        if (cd.trim().startsWith("filename")) {
+	            String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+	            return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.
+	        }
+	    }
+	    return null;
 	}
 	
 	/**

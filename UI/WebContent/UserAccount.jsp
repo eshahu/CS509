@@ -17,19 +17,19 @@
 		<div class="jumbotron jumptron-inner" style="padding: 10px;">
 			Abuse Report # {public_log_number}
 			<div style="float: right;">
-				<a href="ReportDetailsControl?logID=temp"><b>More Info</b></a>
+				<a href="ReportDetailsControl?logID=temp&username=temp2"><b>More Info</b></a>
 			</div>
 		</div>
 		<div class="jumbotron jumptron-inner" style="padding: 10px;">
 			Abuse Report # {public_log_number}
 			<div style="float: right;">
-				<a href="ReportDetailsControl?logId=temp2"><b>More Info</b></a>
+				<a href="ReportDetailsControl?logId=temp2&username=temp2"><b>More Info</b></a>
 			</div>
 		</div>
 		<div class="jumbotron jumptron-inner" style="padding: 10px;">
 			Abuse Report # {public_log_number}
 			<div style="float: right;">
-				<a href="ReportDetailsControl?logId=temp3"><b>More Info</b></a>
+				<a href="ReportDetailsControl?logId=temp3&username=temp2"><b>More Info</b></a>
 			</div>
 		</div>
 	</div>
