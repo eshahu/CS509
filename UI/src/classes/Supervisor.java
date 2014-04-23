@@ -113,4 +113,9 @@ public class Supervisor extends User{
 	public void downloadFile(String fileType){
 		
 	}
+
+	public void deleteFile(String logID, String filename) {
+		// TODO Auto-generated method stub
+		
+	}
 }
