@@ -15,6 +15,17 @@
 	function enableBtn(btnName) {
 		document.getElementsByName(btnName)[0].disabled = false;
 	}
+	function editNavigateBtn(btn) {
+		var form = btn.parentNode;
+		var inputs = form.getElementsByTagName('input')
+		for (each in inputs) {
+			if (inputs[each].checked == true) {
+				form.action=inputs[each].value;
+				form.submit();
+				break;
+			}
+		}
+	}
 </script>
 <div class="row">
 	<div class="jumbotron col-md-12">
@@ -29,17 +40,18 @@
 			%>
 			</h2>
 			<input type="hidden" name="logID" value="<% out.println(logID); %>">
-			<input type="hidden" name="username" value="<% out.println(username); %>">
+			<input type="hidden" name="username"
+				value="<% out.println(username); %>">
 			<div class="jumbotron jumptron-inner"
 				onclick="disableBtn('deleteBtn');enableBtn('editBtn');"
 				style="padding: 10px; margin-bottom: 5px;">
-				<input type="radio" name="file" value="abusereport"> Abuse
+				<input type="radio" name="file" value="ReportReview.jsp"> Abuse
 				Report
 			</div>
 			<div class="jumbotron jumptron-inner"
 				onclick="disableBtn('deleteBtn');enableBtn('editBtn');"
 				style="padding: 10px; margin-bottom: 5px;">
-				<input type="radio" name="file" value="corrective">
+				<input type="radio" name="file" value="CorrectiveActions.jsp">
 				CorrectiveActions.txt
 			</div>
 			<%
@@ -57,12 +69,11 @@
 			<br>
 			<button type="button" class="btn btn-lg btn-primary"
 				name="pdfReviewBtn">Review As PDF</button>
-			<button type="button" class="btn btn-lg btn-primary" name="editBtn">Edit</button>
+			<button type="button" class="btn btn-lg btn-primary" name="editBtn"
+				onclick="editNavigateBtn(this);">Edit</button>
 			<button type="submit" class="btn btn-lg btn-primary"
 				onclick="this.parentNode.action='DeleteFileControl';"
 				name="deleteBtn">Delete</button>
-			<button type="button" class="btn btn-lg btn-primary"
-				name="downloadBtn">Download</button>
 		</form>
 	</div>
 </div>
