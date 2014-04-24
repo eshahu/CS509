@@ -1,7 +1,7 @@
 <%@ include file="header.jsp"%>
 
 <div class="jumbotron">
-	<form class="form-create" action="ReportCreationControl" role="form" method="post">
+	<form class="form-create" action = "ReportCreationControl" role="form" method="post">
 		<h2>File Abuse Report</h2>
 		<h4>Reporter Information:</h4>
 		<div class="jumbotron" style="background-color:white;padding:10px">
@@ -12,9 +12,8 @@
 			<h5>Phone:</h5>
 			<input type="text" class="form-control" placeholder="ReporterPhone" name="reporterPhone">
 			<h5>Address:</h5>
-			<input type="text" class="form-control" placeholder="ReporterAddr" name="reporterAddr">
+			<input type="text" class="form-control" placeholder="ReporterAddr" name="reporterAddr" >
 		</div>
-
 		<h4>Victim Information:</h4>
 		<div class="jumbotron" style="background-color:white;padding:10px">
 			<h5>FirstName:</h5>
@@ -38,7 +37,7 @@
 			<input type="text" class="form-control" placeholder="AbuserAddr" name="abuserAddr" >
 		</div>
 		<br>
-		<button class="btn btn-lg btn-primary" type="submit"
+		<button class="btn btn-lg btn-primary" href="ReportReview.jsp" type="submit"
 			style="width: 25%;">Submit</button>
 	</form>
 </div>
