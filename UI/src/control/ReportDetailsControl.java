@@ -25,6 +25,7 @@ public class ReportDetailsControl extends HttpServlet {
 		
 		try {
 			String logID = request.getParameter("logID");
+			String username = request.getParameter("username");
 			AbuseReport report = new AbuseReport(logID);
 			
 			RequestDispatcher disp;
@@ -32,6 +33,7 @@ public class ReportDetailsControl extends HttpServlet {
 			request.setAttribute("logID", logID);
 			request.setAttribute("name", report.getAbuseName());
 			request.setAttribute("files", report.getFilenames());
+			request.setAttribute("username", username);
 			disp.forward(request, response);
 
 		} catch (Exception ex) {
