@@ -1,6 +1,9 @@
 package control;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +24,7 @@ public class ReportCreationControl extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
+			 Map<String, String> messages = new HashMap<String, String>();
 			String reporterFirst = request.getParameter("reporterFirst");
 			String reporterLast = request.getParameter("reporterLast");
 			String reporterPhone = request.getParameter("reporterPhone");
@@ -36,6 +40,14 @@ public class ReportCreationControl extends HttpServlet {
 			String abuserPhone = request.getParameter("abuserPhone");
 			String abuserAddr = request.getParameter("abuserAddr");
 			
+			Pattern pattern = Pattern.compile("\\d{3}-\\d{3}-\\d{4}");
+			if(!pattern.matcher(reporterPhone).matches())
+				request.setAttribute("reporterPhoneMessage", "Please enter a phone number in the xxx-xxx-xxxx format");
+			if(!pattern.matcher(victimPhone).matches())
+				request.setAttribute("victimPhoneMessage", "Please enter a phone number in the xxx-xxx-xxxx format");
+			if(!pattern.matcher(abuserPhone).matches())
+				request.setAttribute("abuserPhoneMessage", "Please enter a phone number in the xxx-xxx-xxxx format");
+	            
 			request.setAttribute("reporterFirst", reporterFirst);
 	        request.setAttribute("reporterLast", reporterLast);
 	        request.setAttribute("reporterPhone", reporterPhone);

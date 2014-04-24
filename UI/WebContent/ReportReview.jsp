@@ -12,7 +12,11 @@
 	String victimFirst = (String)  request.getAttribute("victimFirst");
 	String victimLast = (String) request.getAttribute("victimFirst");
 	String victimPhone = (String) request.getAttribute("victimPhone");
-	String victimAddr = (String)  request.getAttribute("victimAddr");	
+	String victimAddr = (String)  request.getAttribute("victimAddr");
+	
+	String reporterPhoneMessage = (String) request.getAttribute("reporterPhoneMessage");
+	String abuserPhoneMessage = (String) request.getAttribute("abuserPhoneMessage");
+	String victimPhoneMessage = (String) request.getAttribute("victimPhoneMessage");		
 %>
 <%@ include file="header.jsp"%>
 
@@ -26,6 +30,7 @@
 			<h5>lastname:</h5>
 			<input type="text" class="form-control" name="reporterLast" value="${reporterLast}">
 			<h5>phone:</h5>
+			<div style="color:red">${reporterPhoneMessage}</div>			
 			<input type="text" class="form-control" name="reporterPhone" value="${reporterPhone}">
 			<h5>address:</h5>
 			<input type="text" class="form-control" name="reporterAddress" value="${reporterAddr}">
@@ -37,6 +42,7 @@
 			<h5>lastname:</h5>
 			<input type="text" class="form-control" name="victimLast" value="${victimLast}">
 			<h5>phone:</h5>
+			<div style="color:red">${victimPhoneMessage}</div>			
 			<input type="text" class="form-control" name="victimPhone" value="${victimPhone}">
 			<h5>address:</h5>
 			<input type="text" class="form-control" name="victimAddr" value="${victimAddr}">
@@ -48,6 +54,7 @@
 			<h5>lastname:</h5>
 			<input type="text" class="form-control" name="abuserLast" value="${abuserLast}">
 			<h5>phone:</h5>
+			<div style="color:red">${abuserPhoneMessage}</div>			
 			<input type="text" class="form-control" name="abuserPhone" value="${abuserPhone}">
 			<h5>address:</h5>
 			<input type="text" class="form-control" name="abuserAddr" value="${abuserAddr}">
