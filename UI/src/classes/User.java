@@ -53,7 +53,7 @@ public abstract class User{
 	/**
 	 * @return
 	 */
-	protected String getName(){
+	public String getName(){
 		return userName;
 	}
 	
@@ -62,7 +62,7 @@ public abstract class User{
 	/**
 	 * @param aName
 	 */
-	protected void setName(String aName){
+	public void setName(String aName){
 		userName = aName;
 	}
 	
@@ -70,30 +70,30 @@ public abstract class User{
 	/**
 	 * @return
 	 */
-	protected String getPassword(){
+	public String getPassword(){
 		return password;
 	}
 	
 	/**
 	 * @return
 	 */
-	protected String getEmail(){
+	public String getEmail(){
 		return email;
 	}
 	
 	/**
 	 * @param pw
 	 */
-	protected void setpassword(String pw){
+	public void setpassword(String pw){
 		password = pw;
 	}
 	
 	
-	protected void setAccess(boolean hasAccess){
+	public void setAccess(boolean hasAccess){
 		this.hasAccess = hasAccess;
 	}
 	
-	protected boolean getAccess(){
+	public boolean getAccess(){
 		return hasAccess;
 	}
 	
