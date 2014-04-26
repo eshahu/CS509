@@ -2,14 +2,10 @@ package control;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import model.UserBeanOperations;
 import classes.AbuseReport;
 import classes.AnonymousUser;
 
@@ -36,45 +32,16 @@ public class ReportReviewControl extends HttpServlet {
 			String abuserPhone = request.getParameter("abuserPhone");
 			String abuserAddr = request.getParameter("abuserAddr");
 			
-			request.setAttribute("reporterFirst", reporterFirst);
-	        request.setAttribute("reporterLast", reporterLast);
-	        request.setAttribute("reporterPhone", reporterPhone);
-	        request.setAttribute("reporterAddr", reporterAddr);
-	         
-	        request.setAttribute("victimFirst", victimFirst);
-	        request.setAttribute("victimLast", victimLast);
-	        request.setAttribute("victimPhone", victimPhone);
-	        request.setAttribute("victimAddr", victimAddr);
-	         
-	        request.setAttribute("abuserFirst", abuserFirst);
-	        request.setAttribute("abuserLast", abuserLast);
-	        request.setAttribute("abuserPhone", abuserPhone);
-	        request.setAttribute("abuserAddr", abuserAddr);
-	        
-			
 			AnonymousUser aUser = new AnonymousUser(reporterFirst.concat(reporterLast));
 			
 			String logID = String.valueOf(idCounter.getAndIncrement());
 			AbuseReport aReport = new AbuseReport(logID, abuserFirst.concat(abuserLast), aUser, false);
-	
+			String userName = reporterFirst.concat(reporterLast);
+			
             request.setAttribute("logID", logID);
-
-            request.setAttribute("reporterFirst", reporterFirst);
-	        request.setAttribute("reporterLast", reporterLast);
-	        request.setAttribute("reporterPhone", reporterPhone);
-	        request.setAttribute("reporterAddr", reporterAddr);
-	         
-	        request.setAttribute("victimFirst", victimFirst);
-	        request.setAttribute("victimLast", victimLast);
-	        request.setAttribute("victimPhone", victimPhone);
-	        request.setAttribute("victimAddr", victimAddr);
-	         
-	        request.setAttribute("abuserFirst", abuserFirst);
-	        request.setAttribute("abuserLast", abuserLast);
-	        request.setAttribute("abuserPhone", abuserPhone);
-	        request.setAttribute("abuserAddr", abuserAddr);
-	        
-	        getServletContext().getRequestDispatcher("/ReportDetails.jsp").forward(request, response);   
+            request.setAttribute("userName", userName);
+              getServletContext().getRequestDispatcher("/ReportDetailsControl?logID="+logID+"&username="+userName).forward(request, response);
+       
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
