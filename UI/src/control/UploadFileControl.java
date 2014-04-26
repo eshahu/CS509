@@ -23,6 +23,8 @@ public class UploadFileControl extends HttpServlet {
 	    
 	    Supervisor supervisor = new Supervisor(username);
 	    supervisor.uploadFile(logID, request.getPart("file"));
+	    
+	    System.out.println("change 2");
 		
 		RequestDispatcher disp;
 		disp = getServletContext().getRequestDispatcher("/ReportDetails.jsp");

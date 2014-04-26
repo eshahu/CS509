@@ -3,6 +3,8 @@ package classes;
 import java.util.LinkedList;
 import java.util.List;
 
+import model.DBUtil;
+
 /**
  * @author shahe
  *
@@ -75,16 +77,19 @@ public class AbuseReport{
 	private void retrieveFilenames() {
 		/* Retrieve list of files associated with this abuse report from database */
 		this.filenames = new LinkedList<File>();
-		this.filenames.add(new File("Diposition Letter"));
-		this.filenames.add(new File("Decision Letter"));
-		this.filenames.add(new File("temp3"));
+    	String dirname = DBUtil.FILESERVER_DIR + "\\" + logID + "\\";
+    	java.io.File file = new java.io.File(dirname);
+		String[] paths;
+		try {      
+			paths = file.list();
+			for(String path:paths)
+			{
+				this.filenames.add(new File(path));
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 	}
-	
-	private void uploadNewFile(File file) {
-		this.filenames.add(file);
-		/* store in database */
-	}
-
 	
 	public List<File> getFilenames() {
 		return filenames;
