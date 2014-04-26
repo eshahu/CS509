@@ -17,13 +17,21 @@ public class AbuseReport{
 	private boolean isSubmitted;
 	private List<File> filenames;
 	private String correctiveActionsDoc;
+	
+	public AbuseReport (String logID, String abuseName, User user, boolean isSubmitted, List<File> fileNames){
+		this.logID = logID;
+		this.abuseName = abuseName;
+		this.user = user;
+		this.isSubmitted = isSubmitted;
+		this.filenames = fileNames;
+	}
 
 	public AbuseReport (String logID, String abuseName, User user, boolean isSubmitted){
 		this.logID = logID;
 		this.abuseName = abuseName;
 		this.user = user;
 		this.isSubmitted = isSubmitted;
-		this.filenames = new LinkedList<File>();
+		retrieveFilenames();
 	}
 	
 	public AbuseReport(String logID){
