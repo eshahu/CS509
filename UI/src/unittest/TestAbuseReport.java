@@ -2,10 +2,15 @@ package unittest;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import classes.AbuseReport;
+import classes.File;
+import classes.User;
 
 
 /**
@@ -52,6 +57,24 @@ public class TestAbuseReport {
 		Mockito.when(aReport.isSubmitted()).thenReturn(false);
 		boolean secresult = aReport.isSubmitted();
 		assertFalse(secresult);	
+	}
+	
+	/**
+	 * Check the FileNames retrieved are the correct one
+	 *
+	 */
+	@Test
+	public void testGetFileNames() {
+		List<File> files = new ArrayList<File>();
+		File file1 = new File ("TestFileName1");
+		File file2 = new File ("TestFileName2");
+		files.add(file1);
+		files.add(file2);
+		User aUser = Mockito.mock(User.class);
+		AbuseReport aReport = new AbuseReport("1111111", "test", aUser, true, files);
+		assertEquals("Retrieved Wrong Number of Files ", aReport.getFilenames(), files);
+		assertEquals("Retrieved Wrong FileName ", aReport.getFilenames().get(0).getFileName(), "TestFileName1");
+		assertEquals("Retrieved Wrong FileName ", aReport.getFilenames().get(1).getFileName(), "TestFileName2");
 	}
 
 }
