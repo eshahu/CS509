@@ -31,7 +31,7 @@
 	</div>
 	<div class="col-md-1"></div>
 	<div class="jumbotron col-md-5">
-		<form class="form-signin" role="form" action="LoginControl"
+		<form class="form-signin" role="form" action="LoginControl?pageNow=1"
 			method="POST">
 			<h2 class="form-signin-heading">Sign In</h2>
 			<%
