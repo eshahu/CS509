@@ -83,7 +83,11 @@ public class Supervisor extends User{
 	    InputStream filecontent = filePart.getInputStream();
 	    byte[] buffer = new byte[8 * 1024];
 	    try {
-	    	OutputStream output = new FileOutputStream(DBUtil.FILESERVER_DIR + logID + "_" + filename);
+	    	System.out.println("changed");
+	    	String dirname = DBUtil.FILESERVER_DIR + "\\" + logID + "\\";
+	    	java.io.File d = new java.io.File(dirname);
+	    	d.mkdirs();
+	    	OutputStream output = new FileOutputStream(dirname + filename);
 	    	try {
 	    		int bytesRead;
 	    		while ((bytesRead = filecontent.read(buffer)) != -1) {
