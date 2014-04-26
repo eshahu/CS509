@@ -17,6 +17,7 @@
 	}
 	function editNavigateBtn(btn) {
 		var form = btn.parentNode;
+		form.target = "";
 		var inputs = form.getElementsByTagName('input')
 		for (each in inputs) {
 			if (inputs[each].checked == true) {
@@ -25,6 +26,28 @@
 				break;
 			}
 		}
+	}
+	function deleteNavigateBtn(btn) {
+		var form = btn.parentNode;
+		form.target = "";
+		form.action = 'DeleteFileControl';
+		form.submit();
+	}
+	function setRadioBtnState(btn) {
+		var form = btn.parentNode.parentNode;
+		form.target="";
+		var inputs = form.getElementsByTagName('input');
+		for (each in inputs) {
+			inputs[each].checked = false;
+		}
+		btn.checked = true;
+	}
+	function reviewNavigateBtn(btn) {
+		var form = btn.parentNode;
+		form.target = "_blank";
+		form.action = "DownloadFileControl";
+		form.submit();
+		
 	}
 </script>
 <div class="row">
@@ -45,35 +68,35 @@
 			<div class="jumbotron jumptron-inner"
 				onclick="disableBtn('deleteBtn');enableBtn('editBtn');"
 				style="padding: 10px; margin-bottom: 5px;">
-				<input type="radio" name="file" value="ReportReview.jsp"> Abuse
+				<input type="radio" name="abuse_report" value="ReportReview.jsp"
+					onchange="setRadioBtnState(this)";> Abuse
 				Report
 			</div>
 			<div class="jumbotron jumptron-inner"
 				onclick="disableBtn('deleteBtn');enableBtn('editBtn');"
 				style="padding: 10px; margin-bottom: 5px;">
-				<input type="radio" name="file" value="CorrectiveActions.jsp">
-				CorrectiveActions.txt
+				<input type="radio" name="corr_actions" value="CorrectiveActions.jsp"
+					onchange="setRadioBtnState(this)";> CorrectiveActions.txt
 			</div>
 			<%
 				Iterator<File> iterator = files.iterator();
-								while (iterator.hasNext()) {
-					File file = iterator.next();
-					out.println("<div class=\"jumbotron jumptron-inner\" "
-							+ "onclick=\"enableBtn('deleteBtn');disableBtn('editBtn');\""
-							+ "style=\"padding: 10px; margin-bottom: 5px;\">"
-							+ "<input type=\"radio\" name=\"Letter_"
-							+ file.getFileName() + "\">  " + file.getFileName()
-							+ "</div>");
-				}
+									while (iterator.hasNext()) {
+						File file = iterator.next();
+						out.println("<div class=\"jumbotron jumptron-inner\" "
+								+ "onclick=\"enableBtn('deleteBtn');disableBtn('editBtn');\""
+								+ "style=\"padding: 10px; margin-bottom: 5px;\">"
+								+ "<input type=\"radio\" name=\"Letter_"
+								+ file.getFileName() + "\" onchange=\"setRadioBtnState(this)\";>  " + file.getFileName()
+								+ "</div>");
+					}
 			%>
 			<br>
 			<button type="button" class="btn btn-lg btn-primary"
-				name="pdfReviewBtn">Review As PDF</button>
+				name="pdfReviewBtn" onclick="reviewNavigateBtn(this);">Download</button>
 			<button type="button" class="btn btn-lg btn-primary" name="editBtn"
 				onclick="editNavigateBtn(this);">Edit</button>
 			<button type="submit" class="btn btn-lg btn-primary"
-				onclick="this.parentNode.action='DeleteFileControl';"
-				name="deleteBtn">Delete</button>
+				onclick="deleteNavigateBtn(this);" name="deleteBtn">Delete</button>
 		</form>
 	</div>
 </div>

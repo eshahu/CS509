@@ -83,7 +83,6 @@ public class Supervisor extends User{
 	    InputStream filecontent = filePart.getInputStream();
 	    byte[] buffer = new byte[8 * 1024];
 	    try {
-	    	System.out.println("changed");
 	    	String dirname = DBUtil.FILESERVER_DIR + "\\" + logID + "\\";
 	    	java.io.File d = new java.io.File(dirname);
 	    	d.mkdirs();
@@ -119,7 +118,22 @@ public class Supervisor extends User{
 	}
 
 	public void deleteFile(String logID, String filename) {
-		// TODO Auto-generated method stub
+		System.out.println("deleteFile");
+    	String dirname = DBUtil.FILESERVER_DIR + "\\" + logID + "\\";
+		try {
+			 
+			java.io.File file = new java.io.File(dirname + filename);
+ 
+    		if (file.delete()) {
+    			System.out.println("<" + dirname + filename + "> is deleted!");
+    		} else {
+    			System.out.println("Delete operation is failed");
+    		}
+ 
+    	} catch(Exception e){
+    		e.printStackTrace();
+    	}
+ 
 		
 	}
 }
