@@ -28,7 +28,6 @@ public class AbuseReport{
 	private User user;
 	private boolean isSubmitted;
 	private List<File> filenames;
-	private String correctiveActionsDoc;
 
 	public AbuseReport (String logID, String abuseName, User user, boolean isSubmitted){
 		this.logID = logID;
@@ -51,14 +50,6 @@ public class AbuseReport{
 	 */
 	public String getLogID(){
 		return logID;		
-	}
-	
-	/**
-	 * 
-	 */
-	//TODO
-	public void viewAsPDF(){
-		
 	}
 	
 	/**
@@ -126,24 +117,37 @@ public class AbuseReport{
 		paragraph1.setSpacingBefore(50);
 		paragraph1.add(anchorTarget);
 		document.add(paragraph1);
-		document.add(new Paragraph("Some more text on the first page with different color and font type.", 
+		document.add(new Paragraph("LALALALALA", 
 				FontFactory.getFont(FontFactory.TIMES, 12)));
-
-//		private String logID;
-//		private String abuseName;
-//		private User user;
-//		private boolean isSubmitted;
-//		private List<File> filenames;
-//		private String correctiveActionsDoc;
-//		
+		
+		/* TODO - write data to pdf here */
+		
 		document.close();
 		return filename;
 	}
 	
-	
-	
-	
-	
-	
+	public String generateCorrActionsPdf() throws FileNotFoundException, DocumentException {
+		String dirname = DBUtil.FILESERVER_DIR + "\\";
+		String filename = "corrActions_" + this.logID + ".pdf";
+		Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+		PdfWriter writer = PdfWriter.getInstance(document, 
+				new FileOutputStream(dirname + filename));
+		document.open();
+		
+		Anchor anchorTarget = new Anchor("Corrective Actions - Public Log Number " + this.logID);
+		anchorTarget.setName("BackToTop");
+
+		Paragraph paragraph1 = new Paragraph();
+		paragraph1.setSpacingBefore(50);
+		paragraph1.add(anchorTarget);
+		document.add(paragraph1);
+		document.add(new Paragraph("LALALALALA", 
+				FontFactory.getFont(FontFactory.TIMES, 12)));
+
+		/* TODO - write data to pdf here */
+		
+		document.close();
+		return filename;
+	}
 	
 }

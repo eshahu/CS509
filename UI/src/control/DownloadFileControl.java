@@ -28,11 +28,9 @@ public class DownloadFileControl extends HttpServlet {
 
     	System.out.println("download file control");
 		String logID = request.getParameter("logID").trim(); 
-		String username = request.getParameter("username");
 		
 		String dirname = "", fileName = "";
 		
-	    Supervisor supervisor = new Supervisor(username);
 		for (Entry<String, String[]> entry : request.getParameterMap().entrySet()) {
 		    String name = entry.getKey();
 	    	System.out.println(name);
@@ -52,6 +50,15 @@ public class DownloadFileControl extends HttpServlet {
 				}
 		    }
 		    else if (name.contains("corr_actions")) {
+		    	System.out.println("abuse report");
+		    	dirname = DBUtil.FILESERVER_DIR + "\\" ;
+		    	AbuseReport report = new AbuseReport(logID);
+		    	try {
+					fileName = report.generateCorrActionsPdf();
+				} catch (DocumentException e) {
+					System.out.println("Failed to generate PDF!");
+					e.printStackTrace();
+				}
 		    	System.out.println("Corr");
 		    }
 		}
@@ -67,28 +74,13 @@ public class DownloadFileControl extends HttpServlet {
         ServletOutputStream os = response.getOutputStream();
         byte[] bufferData = new byte[1024];
         int read=0;
-        while((read = fis.read(bufferData))!= -1){
+        while((read = fis.read(bufferData))!= -1) {
             os.write(bufferData, 0, read);
         }
         
         os.flush();
         os.close();
         fis.close();
-        
-        System.out.println("File downloaded at client successfully");
-		
-		
-//		
-//		RequestDispatcher disp;
-//		disp = getServletContext().getRequestDispatcher("/ReportDetails.jsp");
-//		request.setAttribute("logID", logID);
-//		request.setAttribute("username", username);
-//		
-//		AbuseReport report = new AbuseReport(logID);
-//		request.setAttribute("name", report.getAbuseName());
-//		request.setAttribute("files", report.getFilenames());
-//		
-//		disp.forward(request, response);
 	}
 
 }
