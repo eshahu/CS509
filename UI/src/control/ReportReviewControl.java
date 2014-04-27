@@ -35,7 +35,7 @@ public class ReportReviewControl extends HttpServlet {
 			AnonymousUser aUser = new AnonymousUser(reporterFirst.concat(reporterLast));
 			
 			String logID = String.valueOf(idCounter.getAndIncrement());
-			AbuseReport aReport = new AbuseReport(logID, abuserFirst.concat(abuserLast), aUser, false);
+			//AbuseReport aReport = new AbuseReport(logID, abuserFirst.concat(abuserLast), aUser, false);
 			String userName = reporterFirst.concat(reporterLast);
 			
             request.setAttribute("logID", logID);
