@@ -28,13 +28,21 @@ public class AbuseReport{
 	private User user;
 	private boolean isSubmitted;
 	private List<File> filenames;
+	
+	public AbuseReport (String logID, String abuseName, User user, boolean isSubmitted, List<File> filenames){
+		this.logID = logID;
+		this.abuseName = abuseName;
+		this.user = user;
+		this.isSubmitted = isSubmitted;
+		this.filenames = filenames;
+	}
 
 	public AbuseReport (String logID, String abuseName, User user, boolean isSubmitted){
 		this.logID = logID;
 		this.abuseName = abuseName;
 		this.user = user;
 		this.isSubmitted = isSubmitted;
-		this.filenames = new LinkedList<File>();
+		retrieveFilenames();
 	}
 	
 	public AbuseReport(String logID){
