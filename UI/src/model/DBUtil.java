@@ -1,13 +1,16 @@
 package model;
 
 import java.sql.Connection;
+
+import model.UserBeanOperations;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBUtil {
 
-	private static final String USERNAME = "dbuser";
-	private static final String PASSWORD = "dbpassword";
+	private static final String USERNAME = "bfloyd";
+	private static final String PASSWORD = "Welcome1";
 	private static final String M_CONN_STRING =
 			"jdbc:mysql://127.0.0.1:3306/dodsms";
 	
@@ -15,8 +18,9 @@ public class DBUtil {
 			"C:\\Users\\bfloyd\\Documents\\";
 
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
-		System.out.println("begin to connect to database");
+		System.out.println("begin to connect to database 2");
 		Class.forName("com.mysql.jdbc.Driver");
+		
 		return DriverManager.getConnection(M_CONN_STRING, USERNAME, PASSWORD);
 	}
 	
