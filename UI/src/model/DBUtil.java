@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class DBUtil {
 
-	private static final String USERNAME = "bfloyd";
-	private static final String PASSWORD = "Welcome1";
+	private static final String USERNAME = "dbuser";
+	private static final String PASSWORD = "dbpassword";
 	private static final String M_CONN_STRING =
 			"jdbc:mysql://127.0.0.1:3306/dodsms";
 	
