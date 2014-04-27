@@ -16,9 +16,19 @@
 	
 	String reporterPhoneMessage = (String) request.getAttribute("reporterPhoneMessage");
 	String abuserPhoneMessage = (String) request.getAttribute("abuserPhoneMessage");
-	String victimPhoneMessage = (String) request.getAttribute("victimPhoneMessage");		
+	String victimPhoneMessage = (String) request.getAttribute("victimPhoneMessage");
+	String logID = (String) request.getAttribute("logID");
+	String username = (String) request.getAttribute("userName");		
 %>
 <%@ include file="header.jsp"%>
+<script>
+function navigateBtn(btn) {
+		var form = btn.parentNode;
+		form.target = "";
+		form.action = 'DownloadFileControl';
+		form.submit();
+	}
+</script>
 
 <div class="jumbotron">
 	<form class="form-create" action="ReportReviewControl" role="form" method="POST">
@@ -60,7 +70,11 @@
 			<input type="text" class="form-control" name="abuserAddr" value="${abuserAddr}">
 		</div>
 		<br>
-		<button class="btn btn-lg btn-primary" type="submit">Review As PDF</button>
+			<input type="hidden" name="logID" value="${logID}">
+			<input type="hidden" name="username" value="<% out.println(username); %>">
+			<input type="hidden" name="abuse_report" value="ReportReview.jsp">
+		
+		<button class="btn btn-lg btn-primary" onclick="navigateBtn(this);" type="submit">Review As PDF</button>
 		<button class="btn btn-lg btn-primary" type="submit">Save Changes</button>
 	</form>
 </div>
