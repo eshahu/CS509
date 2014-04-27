@@ -94,6 +94,42 @@ public class ReportBeanOperations {
 		return b;
 	}
 	
+	// ---------add report-----------------
+		public boolean addReport(String rf, String rl, String rp, String ra,
+				String vf, String vl, String vp, String va, String af, String al,
+				String ap, String aa) {
+			boolean b = false;
+			try {
+				// get Connection
+				conn = DBUtil.getConnection();
+				String sql = "insert into inireport values(null,?,?,?,?,?,?,?,?,?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, rf);
+				pstmt.setString(2, rl);
+				pstmt.setString(3, rp);
+				pstmt.setString(4, ra);
+				pstmt.setString(5, vf);
+				pstmt.setString(6, vl);
+				pstmt.setString(7, vp);
+				pstmt.setString(8, va);
+				pstmt.setString(9, af);
+				pstmt.setString(10, al);
+				pstmt.setString(11, ap);
+				pstmt.setString(12, aa);
+				int num = pstmt.executeUpdate();
+				if (num == 1) {
+					// insert successfully
+					b = true;
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				this.close();
+			}
+			return b;
+		}
+
+	
 	//-----close resources-----
 	public void close() {
 		try {

@@ -43,7 +43,7 @@ function navigateBtn(btn) {
 			<div style="color:red">${reporterPhoneMessage}</div>			
 			<input type="text" class="form-control" name="reporterPhone" value="${reporterPhone}">
 			<h5>address:</h5>
-			<input type="text" class="form-control" name="reporterAddress" value="${reporterAddr}">
+			<input type="text" class="form-control" name="reporterAddr" value="${reporterAddr}">
 		</div>			
 		<h4>Victim Information:</h4>
 		<div class="jumbotron" style="background-color:white;padding:10px">

@@ -149,20 +149,20 @@ public class UserBeanOperations {
 	}
 
 	// ------identify user-----
-	public boolean checkUser(String email, String password) {
+	public boolean checkUser(String u, String p) {
 		boolean b = false;
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
 			pstmt = conn
 					.prepareStatement("select SupPassword from supervisor where SupEmail=? limit 1");
-			pstmt.setString(1, email);
+			pstmt.setString(1, u);
 			rs = pstmt.executeQuery();
 			//judge user through result
 			if (rs.next()) {
 				//indicate username exists
 				String userPassword = rs.getString(1);
-				if (userPassword.equals(password)) {
+				if (userPassword.equals(p)) {
 					//legal user
 					b = true;
 				}//wrong password
@@ -175,6 +175,7 @@ public class UserBeanOperations {
 		}
 		return b;
 	}
+
 
 	// close resources
 	public void close() {
