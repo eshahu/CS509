@@ -15,14 +15,19 @@ public class UserBeanOperations {
 	private ResultSet rs = null;
 	int pageCount; // total pages --- based on calculation
 	int pageSize=3;//set pageSize
+
+	
+    public static void main(String[] args) {
+    }
 	
 	//------------insert user--------------
-	public boolean addUser(String n, String p, String e, String g) {
+	public boolean addUser(String firstName, String lastName, String email, String password) {
 		boolean b=false;
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
-			String sql = "insert into users values('"+n+"','"+p+"','"+e+"','"+g+"')";
+			String sql = "insert into supervisor values(NULL,'"+firstName+"','"+lastName+"','"+email+"','"+password+"')";
+			  
 			pstmt = conn.prepareStatement(sql);
 			int num = pstmt.executeUpdate();
 			if(num==1) {
@@ -43,7 +48,7 @@ public class UserBeanOperations {
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
-			String sql = "update users set password='"+p+"' ,email= '"+e+"',grade='"+g+"' where userID='"+id+"'";
+			String sql = "update supervisor set password='"+p+"' ,email= '"+e+"',grade='"+g+"' where userID='"+id+"'";
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			int num = pstmt.executeUpdate();
@@ -65,7 +70,7 @@ public class UserBeanOperations {
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
-			String sql = "delete from users where userID='"+id+"'";
+			String sql = "delete from supervisor where userID='"+id+"'";
 			pstmt = conn.prepareStatement(sql);
 			int num = pstmt.executeUpdate();
 			if(num==1) {
@@ -87,7 +92,7 @@ public class UserBeanOperations {
 			int rowCount = 0; // total records --- based on table
 			// retrieve rowCount
 			conn = DBUtil.getConnection();
-			pstmt = conn.prepareStatement("select count(*) from users ");
+			pstmt = conn.prepareStatement("select count(*) from supervisor ");
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				rowCount = rs.getInt(1);
@@ -115,7 +120,7 @@ public class UserBeanOperations {
 		ArrayList<UserBean> al = new ArrayList<>();
 		try {
 			conn = DBUtil.getConnection();
-			pstmt = conn.prepareStatement("select * from users limit ?,?");
+			pstmt = conn.prepareStatement("select * from supervisor limit ?,?");
 			// give ? value, limit the number of records being showed
 			pstmt.setInt(1, pageSize * (pageNow - 1));
 			pstmt.setInt(2, pageSize);
@@ -144,20 +149,20 @@ public class UserBeanOperations {
 	}
 
 	// ------identify user-----
-	public boolean checkUser(String u, String p) {
+	public boolean checkUser(String email, String password) {
 		boolean b = false;
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
 			pstmt = conn
-					.prepareStatement("select SupPW from supervisor where SupName=? limit 1");
-			pstmt.setString(1, u);
+					.prepareStatement("select SupPassword from supervisor where SupEmail=? limit 1");
+			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 			//judge user through result
 			if (rs.next()) {
 				//indicate username exists
 				String userPassword = rs.getString(1);
-				if (userPassword.equals(p)) {
+				if (userPassword.equals(password)) {
 					//legal user
 					b = true;
 				}//wrong password
