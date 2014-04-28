@@ -1,5 +1,7 @@
 package classes;
 
+import model.UserBeanOperations;
+
 
 /**
  * @author shahe
@@ -8,8 +10,8 @@ package classes;
 public class Admin extends User{
 	
 	
-	public Admin(String userName, String password, String email) {
-		super(userName, password, email);
+	public Admin(String email, String password) {
+		super(email, password);
 		this.hasAccess = true;
 		// TODO Auto-generated constructor stub
 	}
@@ -17,21 +19,32 @@ public class Admin extends User{
 	/**
 	 * @param userName
 	 */
-	public void addUser(String userName){
-		
+	public void addUser(String firstName, String lastName, String email){
+		UserBeanOperations ubo = new UserBeanOperations();
+		System.out.println("loading database");
+		ubo.addUser(firstName, lastName, email);
 	}
 	
 	/**
-	 * @param userName
+	 * @param email
 	 */
-	public void removeUser(String userName){
-		
+	public void removeUser(String email){
+		UserBeanOperations ubo = new UserBeanOperations();
+		System.out.println("loading database");
+		ubo.removeUser(email);
 	}
 	
 	/**
 	 * 
 	 */
 	public void reviewAuditTrailReport(){
+		
+	}
+
+	public void resetPassword(String email) {
+		UserBeanOperations ubo = new UserBeanOperations();
+		System.out.println("loading database");
+		ubo.resetPassword(email);
 		
 	}
 	

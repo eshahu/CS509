@@ -18,13 +18,13 @@ import model.DBUtil;
 public class Supervisor extends User{
 
 	
-	public Supervisor(String userName, String password, String email) {
-		super(userName, password, email, true);
+	public Supervisor(String firstName, String lastName, String password, String email) {
+		super(firstName, firstName, password, email, true);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Supervisor(String userName) {
-		super(userName);
+	public Supervisor(String email) {
+		super(email);
 		setAccess(true);
 		// TODO Auto-generated constructor stub
 	}

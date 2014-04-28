@@ -1,10 +1,10 @@
 package model;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 //control UserBean which is the mapping of users table
 
@@ -14,48 +14,68 @@ public class UserBeanOperations {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	int pageCount; // total pages --- based on calculation
-	int pageSize=3;//set pageSize
+	int pageSize = 3;// set pageSize
 
-	
-    public static void main(String[] args) {
-    }
-	
-	//------------insert user--------------
-	public boolean addUser(String firstName, String lastName, String email, String password) {
-		boolean b=false;
+	public static void main(String[] args) {
+	}
+
+	// ------------list user------
+	public List<String> listUser() {
+		List<String> emailList;
+		emailList = new ArrayList<String>();
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
-			String sql = "insert into supervisor values(NULL,'"+firstName+"','"+lastName+"','"+email+"','"+password+"')";
-			  
+			String sql = "select SupEmail from Supervisor";
 			pstmt = conn.prepareStatement(sql);
-			int num = pstmt.executeUpdate();
-			if(num==1) {
-				//insert successfully
-				b=true;
-			}	
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String supemail = rs.getString(1);
+				emailList.add(supemail);
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			this.close();
 		}
-		return b;
+		return emailList;
 	}
-	
-	//-----------update user-------------
-	public boolean updateUser(String id, String p, String e, String g) {
-		boolean b=false;
+
+	// ------------insert user--------------
+	public void addUser(String fn, String ln, String ea) {
+
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
-			String sql = "update supervisor set password='"+p+"' ,email= '"+e+"',grade='"+g+"' where userID='"+id+"'";
+			String sql = "insert into supervisor values(NULL,?,?,?,DEFAULT)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fn);
+			pstmt.setString(2, ln);
+			pstmt.setString(3, ea);
+			pstmt.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			this.close();
+		}
+
+	}
+
+	// -----------update user-------------
+	public boolean updateUser(String id, String p, String e, String g) {
+		boolean b = false;
+		try {
+			// get Connection
+			conn = DBUtil.getConnection();
+			String sql = "update supervisor set password='" + p + "' ,email= '"
+					+ e + "',grade='" + g + "' where userID='" + id + "'";
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			int num = pstmt.executeUpdate();
-			if(num==1) {
-				//delete successfully
-				b=true;
-			}	
+			if (num == 1) {
+				// delete successfully
+				b = true;
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -63,26 +83,23 @@ public class UserBeanOperations {
 		}
 		return b;
 	}
-	
+
 	// ------------delete user------------
-	public boolean delUser(String id) {
-		boolean b=false;
+	public void removeUser(String email) {
+
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
-			String sql = "delete from supervisor where userID='"+id+"'";
+			String sql = "delete from supervisor where SupEmail='" + email
+					+ "'";
 			pstmt = conn.prepareStatement(sql);
-			int num = pstmt.executeUpdate();
-			if(num==1) {
-				//delete successfully
-				b=true;
-			}	
+			pstmt.executeUpdate();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			this.close();
 		}
-		return b;
+
 	}
 
 	// ------return pageCount----pageCount will be calculated by calling paging
@@ -104,10 +121,10 @@ public class UserBeanOperations {
 			} else {
 				pageCount = rowCount / pageSize + 1;
 			}
-			
-		}catch(Exception ex) {
+
+		} catch (Exception ex) {
 			ex.printStackTrace();
-		}finally {
+		} finally {
 			this.close();
 		}
 		return this.pageCount;
@@ -148,6 +165,23 @@ public class UserBeanOperations {
 		return al;
 	}
 
+	// ------reset password-----
+	public void resetPassword(String email) {
+		try {
+			// get Connection
+			conn = DBUtil.getConnection();
+			String sql = "UPDATE supervisor SET SupPassword = '1111' WHERE SupEmail ='"
+					+ email + "'";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			this.close();
+		}
+
+	}
+
 	// ------identify user-----
 	public boolean checkUser(String u, String p) {
 		boolean b = false;
@@ -158,16 +192,16 @@ public class UserBeanOperations {
 					.prepareStatement("select SupPassword from supervisor where SupEmail=? limit 1");
 			pstmt.setString(1, u);
 			rs = pstmt.executeQuery();
-			//judge user through result
+			// judge user through result
 			if (rs.next()) {
-				//indicate username exists
+				// indicate username exists
 				String userPassword = rs.getString(1);
 				if (userPassword.equals(p)) {
-					//legal user
+					// legal user
 					b = true;
-				}//wrong password
-			}//wrong username
-			
+				}// wrong password
+			}// wrong username
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -175,7 +209,6 @@ public class UserBeanOperations {
 		}
 		return b;
 	}
-
 
 	// close resources
 	public void close() {
@@ -196,4 +229,5 @@ public class UserBeanOperations {
 			ex.printStackTrace();
 		}
 	}
+
 }
