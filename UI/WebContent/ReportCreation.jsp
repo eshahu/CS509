@@ -37,7 +37,7 @@
 			<input type="text" class="form-control" placeholder="AbuserAddr" name="abuserAddr" >
 		</div>
 		<br>
-		<button class="btn btn-lg btn-primary" href="ReportReview.jsp" type="submit"
+		<button class="btn btn-lg btn-primary" href="home.jsp" type="submit"
 			style="width: 25%;">Submit</button>
 	</form>
 </div>
