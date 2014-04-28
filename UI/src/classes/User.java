@@ -8,18 +8,25 @@ package classes;
  */
 public abstract class User{
 	
-	 protected String userName;
-	 protected String password;
-	 protected String email;
-	 protected boolean isAdmin;
-	 protected boolean isSupervisor;
-	 protected boolean hasAccess;
+	protected String userName;
+	protected String password;
+	protected String email;
+	protected boolean isAdmin;
+	protected boolean isSupervisor;
+	public boolean hasAccess;
+	 
+	public User(String userName, String password, String email, boolean hasAccess){
+		this.userName = userName;
+		this.password = password;
+		this.email = email;
+		this.hasAccess = hasAccess;
+	}
 	 
 	public User(String userName, String password, String email){
 		this.userName = userName;
 		this.password = password;
 		this.email = email;
-		this.hasAccess = true;
+		this.hasAccess = false;
 	}
 	 
 	public User(String userName, String email){

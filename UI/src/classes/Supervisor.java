@@ -19,8 +19,7 @@ public class Supervisor extends User{
 
 	
 	public Supervisor(String userName, String password, String email) {
-		super(userName, password, email);
-		setAccess(true);
+		super(userName, password, email, true);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -29,7 +28,7 @@ public class Supervisor extends User{
 		setAccess(true);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	/**
 	 * @param ar
 	 */
