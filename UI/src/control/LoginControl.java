@@ -10,8 +10,7 @@ import model.UserBeanOperations;
 @WebServlet("/LoginControl")
 public class LoginControl extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) {
-
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String name = request.getParameter("username");
 			String password = request.getParameter("password");
@@ -26,7 +25,7 @@ public class LoginControl extends HttpServlet {
 				request.getRequestDispatcher("AminstrativeControlControl")
 						.forward(request, response);
 			}
-			if (ubo.checkUser(name, password)) {
+			else if (ubo.checkUser(name, password)) {
 
 				System.out
 						.println("login controller to jump to UserAccount.jsp");
@@ -44,9 +43,5 @@ public class LoginControl extends HttpServlet {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
-
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
-		this.doGet(request, response);
 	}
 }

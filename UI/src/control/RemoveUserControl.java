@@ -13,8 +13,8 @@ import classes.Admin;
 
 @WebServlet("/RemoveUserControl")
 public class RemoveUserControl extends HttpServlet {
-
-	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			for (Entry<String, String[]> entry : request.getParameterMap()
 					.entrySet()) {
@@ -23,16 +23,11 @@ public class RemoveUserControl extends HttpServlet {
 				Admin admin = new Admin("Admin@admin.com", "password");
 				admin.removeUser(email);
 				System.out.println("removing user");
-				request.getRequestDispatcher("AminstrativeControlControl")
-						.forward(request, response);
 			}
+			request.getRequestDispatcher("AminstrativeControlControl")
+			.forward(request, response);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		this.doGet(request, response);
 	}
 }
