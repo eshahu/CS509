@@ -20,8 +20,8 @@ public class TestSupervisor {
 	@Test
 	public void testSupervisorName() {
 		Supervisor aUser = Mockito.mock(Supervisor.class);
-		Mockito.when(aUser.getName()).thenReturn("Mary Smith");
-		String result = aUser.getName();
+		Mockito.when(aUser.getLastName()).thenReturn("Mary Smith");
+		String result = aUser.getLastName();
 		assertEquals("Retrieved Wrong User Name ", result, "Mary Smith");		
 	}
 	

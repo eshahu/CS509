@@ -23,8 +23,8 @@ public class TestAnonymousUser {
 	@Test
 	public void testAnonymousUserName() {
 		AnonymousUser aUser = Mockito.mock(AnonymousUser.class);
-		Mockito.when(aUser.getName()).thenReturn("Mary Smith");
-		String result = aUser.getName();
+		Mockito.when(aUser.getLastName()).thenReturn("Mary Smith");
+		String result = aUser.getLastName();
 		assertEquals("Retrieved Wrong User Name ", result, "Mary Smith");		
 	}
 	
