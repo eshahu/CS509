@@ -27,11 +27,11 @@ public class LoginControl extends HttpServlet {
 			}
 			else if (ubo.checkUser(name, password)) {
 
-				System.out
-						.println("login controller to jump to UserAccount.jsp");
+				System.out.println("login controller to jump to UserAccount.jsp");
 
 				// it's like sendRedirect, but more efficient
 				// and keep the content in the request
+				request.setAttribute("username",name);
 				request.getRequestDispatcher("ReportControl").forward(request,
 						response);
 

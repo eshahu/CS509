@@ -55,12 +55,7 @@
 		<form class="form" role="form" method="post" action="">
 			<h2 class="form-purpose-heading">
 				Abuse Report Details -
-				<%
-				out.println(logID);
-			%>
-				<%
-				out.println(username);
-			%>
+				<%=logID%>
 			</h2>
 			<input type="hidden" name="logID" value="<% out.println(logID); %>">
 			<input type="hidden" name="username"

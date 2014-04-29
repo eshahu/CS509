@@ -12,6 +12,7 @@
 </div>
 
 <%
+	String username = (String) request.getAttribute("username");
 	//MVC V does not need to call model
 	//get data from request
 	ArrayList<ReportBean> al = (ArrayList) request
@@ -32,7 +33,8 @@
 			Abuse Report #
 			<%=logNumber%>
 			<div style="float: right;">
-				<a href="ReportDetails.jsp"><b>More Info</b></a>
+				<a href="ReportDetailsControl?logID=<%=logNumber%>&username=<%=username%>"><b>More
+						Info</b></a>
 			</div>
 		</div>
 		<%
