@@ -91,16 +91,18 @@ public class AbuseReport{
 		this.filenames = new LinkedList<File>();
     	String dirname = DBUtil.FILESERVER_DIR + "\\" + logID + "\\";
     	java.io.File file = new java.io.File(dirname);
-		String[] paths;
-		try {      
-			paths = file.list();
-			for(String path:paths)
-			{
-				this.filenames.add(new File(path));
-			}
-		} catch(Exception e){
-			e.printStackTrace();
-		}
+    	String[] paths;
+    	try {      
+    		if (file.exists()) {
+    			paths = file.list();
+    			for(String path:paths)
+    			{
+    				this.filenames.add(new File(path));
+    			}
+    		}
+    	} catch(Exception e){
+    		e.printStackTrace();
+    	}
 	}
 	
 	public List<File> getFilenames() {

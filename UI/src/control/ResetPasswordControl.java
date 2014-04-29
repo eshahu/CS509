@@ -19,7 +19,6 @@ public class ResetPasswordControl extends HttpServlet {
 			for (Entry<String, String[]> entry : request.getParameterMap()
 					.entrySet()) {
 				String email = entry.getKey();
-				System.out.println(email);
 				Admin admin = new Admin("Admin@admin.com", "password");
 				admin.resetPassword(email);
 				System.out.println("reset password");

@@ -19,7 +19,7 @@ public class ReportBeanOperations {
 			int rowCount = 0; // total records --- based on table
 			// retrieve rowCount
 			conn = DBUtil.getConnection();
-			pstmt = conn.prepareStatement("select count(*) from report ");
+			pstmt = conn.prepareStatement("select count(*) from inireport ");
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				rowCount = rs.getInt(1);
@@ -80,7 +80,7 @@ public class ReportBeanOperations {
 			conn = DBUtil.getConnection();
 			String sql = "update inireport set "+ key + "='" + value 
 					+ "' where ReportID='"+logID+"'";
-			System.out.println(sql);
+			
 			pstmt = conn.prepareStatement(sql);
 			int num = pstmt.executeUpdate();
 			if(num==1) {
@@ -138,6 +138,7 @@ public class ReportBeanOperations {
 			String victimLast, String victimPhone, String victimAddr,
 			String abuserFirst, String abuserLast, String abuserPhone,
 			String abuserAddr) {
+		
 		boolean b = update(logID, "ReporterFirst", reporterFirst) &&
 				update(logID, "ReporterLast", reporterLast) &&
 				update(logID, "ReportPhone", reporterPhone) &&
@@ -150,7 +151,7 @@ public class ReportBeanOperations {
 				update(logID, "AbuserLast", abuserLast) &&
 				update(logID, "AbuserPhone", abuserPhone) &&
 				update(logID, "AbuserAddr", abuserAddr);
-		System.out.println(b);
+		
 		return b;
 		
 	}
