@@ -45,7 +45,7 @@ public class ReportBeanOperations {
 		ArrayList<ReportBean> al = new ArrayList<>();
 		try {
 			conn = DBUtil.getConnection();
-			pstmt = conn.prepareStatement("select * from report limit ?,?");
+			pstmt = conn.prepareStatement("select * from inireport limit ?,?");
 			// give ? value, limit the number of records being showed
 			pstmt.setInt(1, pageSize * (pageNow - 1));
 			pstmt.setInt(2, pageSize);
