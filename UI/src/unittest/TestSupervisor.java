@@ -53,7 +53,8 @@ public class TestSupervisor {
 	 */
 	@Test
 	public void testSupervisorAccess() {
-		Supervisor aUser = Mockito.mock(Supervisor.class);
+		//Supervisor aUser = Mockito.mock(Supervisor.class);
+		Supervisor aUser = new Supervisor("ASUPERVISOR");
 		boolean result = aUser.getAccess();
 		assertTrue (result);		
 	}

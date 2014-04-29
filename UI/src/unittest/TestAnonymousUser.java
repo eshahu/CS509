@@ -51,4 +51,15 @@ public class TestAnonymousUser {
 		assertEquals("Retrieved Wrong Password ", result, "xyz");		
 	}
 	
+	/*
+	 * Check that Anonymous User access is flase
+	 */
+	@Test
+	public void testAnonymousUserAccess() {
+		AnonymousUser aUser = Mockito.mock(AnonymousUser.class);
+		Mockito.when(aUser.getPassword()).thenReturn("xyz");
+		boolean result = aUser.getAccess();
+		assertFalse("Accpected no access for AnonymousUser ", result);		
+	}
+	
 }
