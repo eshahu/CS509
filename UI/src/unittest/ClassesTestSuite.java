@@ -14,6 +14,7 @@ import org.junit.runners.Suite;
 	TestAdmin.class,
 	TestAnonymousUser.class,
 	TestAuditTrail.class,
+	TestFile.class,
 	TestSupervisor.class	
 	})
 public final class ClassesTestSuite {
