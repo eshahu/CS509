@@ -32,7 +32,8 @@ public class ReportControl extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// get flag
-				String flag = request.getParameter("flag");
+		String flag = request.getParameter("flag");
+		String username = request.getParameter("username");
 				
 		
 		
@@ -51,6 +52,7 @@ public class ReportControl extends HttpServlet {
 		request.setAttribute("result",al);
 		request.setAttribute("pageCount",pageCount+"");
 		request.setAttribute("pageNow", pageNow+"");
+		request.setAttribute("username", username);
 		
 		//it's like sendRedirect, but more efficient
 		//and keep the content in the request
