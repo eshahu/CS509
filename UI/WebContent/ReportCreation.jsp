@@ -10,6 +10,7 @@
 			<h5>LastName:</h5>
 			<input type="text" class="form-control" placeholder="ReporterLast" name="reporterLast">
 			<h5>Phone:</h5>
+			<div style="color:red">${reporterPhoneMessage}</div>	
 			<input type="text" class="form-control" placeholder="ReporterPhone" name="reporterPhone">
 			<h5>Address:</h5>
 			<input type="text" class="form-control" placeholder="ReporterAddr" name="reporterAddr" >
@@ -21,6 +22,7 @@
 			<h5>LastName:</h5>
 			<input type="text" class="form-control" placeholder="VictimLast" name="victimLast" >
 			<h5>Phone:</h5>
+			<div style="color:red">${victimPhoneMessage}</div>	
 			<input type="text" class="form-control" placeholder="VictimPhone" name="victimPhone" >
 			<h5>Address:</h5>
 			<input type="text" class="form-control" placeholder="VictimAddr" name="victimAddr" >
@@ -32,6 +34,7 @@
 			<h5>LastName:</h5>
 			<input type="text" class="form-control" placeholder="AbuserLast" name="abuserLast" >
 			<h5>Phone:</h5>
+			<div style="color:red">${abuserPhoneMessage}</div>	
 			<input type="text" class="form-control" placeholder="AbuserPhone" name="abuserPhone" >
 			<h5>Address:</h5>
 			<input type="text" class="form-control" placeholder="AbuserAddr" name="abuserAddr" >

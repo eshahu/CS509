@@ -69,7 +69,11 @@ public class ReportCreationControl extends HttpServlet {
 				request.setAttribute("abuserPhone", abuserPhone);
 				request.setAttribute("abuserAddr", abuserAddr);
 				
-				getServletContext().getRequestDispatcher("/ReportDetails.jsp").forward(request, response);
+				RequestDispatcher disp;
+				disp = getServletContext().getRequestDispatcher(
+						"/ReportCreation.jsp");
+
+				disp.forward(request, response);
 			}
 			else {
 				ReportBeanOperations rbo = new ReportBeanOperations();
