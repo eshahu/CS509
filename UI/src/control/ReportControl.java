@@ -31,12 +31,8 @@ public class ReportControl extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// get flag
-		String flag = request.getParameter("flag");
 		String username = request.getParameter("username");
 				
-		
-		
 		//----------------------paging---------------
 		System.out
 				.println("pageing function is controlled by ReportControl");

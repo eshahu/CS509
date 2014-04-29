@@ -52,6 +52,10 @@
 </script>
 <div class="row">
 	<div class="jumbotron col-md-12">
+		<a href="ReportControl?username=<%=username%>&pageNow=1"><h2><-- Back</h2></a>
+	</div>
+
+	<div class="jumbotron col-md-12">
 		<form class="form" role="form" method="post" action="">
 			<h2 class="form-purpose-heading">
 				Abuse Report Details -
