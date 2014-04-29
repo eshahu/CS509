@@ -79,7 +79,7 @@ public class ReportCreationControl extends HttpServlet {
 				ReportBeanOperations rbo = new ReportBeanOperations();
 				rbo.addReport(reporterFirst, reporterLast, reporterPhone,
 						reporterAddr, victimFirst, victimLast, victimPhone,
-						victimAddr, abuserFirst, abuserPhone, abuserPhone,
+						victimAddr, abuserFirst, abuserLast, abuserPhone,
 						abuserAddr);
 
 				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);

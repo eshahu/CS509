@@ -14,6 +14,8 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import model.DBUtil;
+import model.ReportBean;
+import model.ReportBeanOperations;
 
 /**
  * @author shahe
@@ -123,10 +125,33 @@ public class AbuseReport{
 		paragraph1.setSpacingBefore(50);
 		paragraph1.add(anchorTarget);
 		document.add(paragraph1);
-		document.add(new Paragraph("LALALALALA", 
-				FontFactory.getFont(FontFactory.TIMES, 12)));
 		
 		/* TODO - write data to pdf here */
+		ReportBeanOperations rbo = new ReportBeanOperations();
+		ReportBean rb = rbo.getReport(this.logID);
+		document.add(new Paragraph("Reporter Name: " + rb.getReporterFirst() 
+				+ " " + rb.getReporterLast(), 
+				FontFactory.getFont(FontFactory.TIMES, 12)));
+		document.add(new Paragraph("Reporter Address: " + rb.getReportAddr(),
+				FontFactory.getFont(FontFactory.TIMES, 12)));
+		document.add(new Paragraph("Reporter Phone #: " + rb.getReportPhone(),
+				FontFactory.getFont(FontFactory.TIMES, 12)));
+		
+		document.add(new Paragraph("Abuser Name: " + rb.getAbuserFirst() 
+				+ " " + rb.getAbuserLast(), 
+				FontFactory.getFont(FontFactory.TIMES, 12)));
+		document.add(new Paragraph("Abuser Address: " + rb.getAbuserAddr(),
+				FontFactory.getFont(FontFactory.TIMES, 12)));
+		document.add(new Paragraph("Abuser Phone #: " + rb.getAbuserPhone(),
+				FontFactory.getFont(FontFactory.TIMES, 12)));
+		
+		document.add(new Paragraph("Victim Name: " + rb.getVictimFirst() 
+				+ " " + rb.getVictimLast(), 
+				FontFactory.getFont(FontFactory.TIMES, 12)));
+		document.add(new Paragraph("Victim Address: " + rb.getVictimAddr(),
+				FontFactory.getFont(FontFactory.TIMES, 12)));
+		document.add(new Paragraph("Victim Phone #: " + rb.getVictimPhone(),
+				FontFactory.getFont(FontFactory.TIMES, 12)));
 		
 		document.close();
 		return filename;

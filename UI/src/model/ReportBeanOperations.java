@@ -78,7 +78,7 @@ public class ReportBeanOperations {
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
-			String sql = "update report set appeal='"+appeal+"' where logNumber='"+logNumber+"'";
+			String sql = "update inireport set appeal='"+appeal+"' where logNumber='"+logNumber+"'";
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			int num = pstmt.executeUpdate();
@@ -92,6 +92,38 @@ public class ReportBeanOperations {
 			this.close();
 		}
 		return b;
+	}
+	
+	public ReportBean getReport(String logID) {
+		ReportBean ub = new ReportBean(); 
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement("select * from inireport where ReportID=" + logID);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ub.setLogNumber(rs.getInt(1));
+				ub.setReporterFirst(rs.getString(2));
+				ub.setReporterLast(rs.getString(3));
+				ub.setReportPhone(rs.getString(4));
+				ub.setReportAddr(rs.getString(5));
+				ub.setVictimFirst(rs.getString(6));
+				ub.setVictimLast(rs.getString(7));
+				ub.setVictimPhone(rs.getString(8));
+				ub.setVictimAddr(rs.getString(9));
+				ub.setAbuserFirst(rs.getString(10));
+				ub.setAbuserLast(rs.getString(11));
+				ub.setAbuserPhone(rs.getString(12));
+				ub.setAbuserAddr(rs.getString(13));
+				break;
+			}
+		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			this.close();
+		}
+		return ub;
 	}
 	
 	// ---------add report-----------------
