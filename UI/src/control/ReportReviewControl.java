@@ -30,7 +30,7 @@ public class ReportReviewControl extends HttpServlet {
 			request.setAttribute("victimFirst", rb.getVictimFirst());
 			request.setAttribute("victimLast", rb.getVictimLast());
 			request.setAttribute("victimPhone", rb.getVictimPhone());
-			request.setAttribute("victimAddr", rb.getVictimPhone());
+			request.setAttribute("victimAddr", rb.getVictimAddr());
 
 			request.setAttribute("abuserFirst", rb.getAbuserFirst());
 			request.setAttribute("abuserLast", rb.getAbuserLast());

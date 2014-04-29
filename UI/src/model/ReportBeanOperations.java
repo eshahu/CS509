@@ -3,6 +3,7 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ReportBeanOperations {
@@ -72,13 +73,13 @@ public class ReportBeanOperations {
 		return al;
 	}
 	
-	//----------update appeal-------------
-	public boolean updateUser(String logNumber,String appeal) {
+	public boolean update(String logID, String key, String value) {
 		boolean b=false;
 		try {
 			// get Connection
 			conn = DBUtil.getConnection();
-			String sql = "update inireport set appeal='"+appeal+"' where logNumber='"+logNumber+"'";
+			String sql = "update inireport set "+ key + "='" + value 
+					+ "' where ReportID='"+logID+"'";
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			int num = pstmt.executeUpdate();
@@ -92,6 +93,12 @@ public class ReportBeanOperations {
 			this.close();
 		}
 		return b;
+	}
+	
+
+	//----------update appeal-------------
+	public boolean updateUser(String logID,String appeal) {
+		return update(logID, "appeal", appeal);
 	}
 	
 	public ReportBean getReport(String logID) {
@@ -124,6 +131,28 @@ public class ReportBeanOperations {
 			this.close();
 		}
 		return ub;
+	}
+
+	public boolean udpateReport(String logID, String reporterFirst, String reporterLast,
+			String reporterPhone, String reporterAddr, String victimFirst,
+			String victimLast, String victimPhone, String victimAddr,
+			String abuserFirst, String abuserLast, String abuserPhone,
+			String abuserAddr) {
+		boolean b = update(logID, "ReporterFirst", reporterFirst) &&
+				update(logID, "ReporterLast", reporterLast) &&
+				update(logID, "ReportPhone", reporterPhone) &&
+				update(logID, "ReporterAddr", reporterAddr) &&
+				update(logID, "VictimFirst", victimFirst) &&
+				update(logID, "VictimLast", victimLast) &&
+				update(logID, "VictimAddr", victimAddr) &&
+				update(logID, "VictimPhone", victimPhone) &&
+				update(logID, "AbuserFirst", abuserFirst) &&
+				update(logID, "AbuserLast", abuserLast) &&
+				update(logID, "AbuserPhone", abuserPhone) &&
+				update(logID, "AbuserAddr", abuserAddr);
+		System.out.println(b);
+		return b;
+		
 	}
 	
 	// ---------add report-----------------
