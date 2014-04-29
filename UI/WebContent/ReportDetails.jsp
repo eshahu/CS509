@@ -63,7 +63,7 @@
 			<div class="jumbotron jumptron-inner"
 				onclick="disableBtn('deleteBtn');enableBtn('editBtn');"
 				style="padding: 10px; margin-bottom: 5px;">
-				<input type="radio" name="abuse_report" value="ReportReview.jsp"
+				<input type="radio" name="abuse_report" value="ReportReviewControl"
 					onchange="setRadioBtnState(this)";> Abuse
 				Report
 			</div>
