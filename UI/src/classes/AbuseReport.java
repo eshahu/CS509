@@ -8,6 +8,7 @@ import java.util.List;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
@@ -120,40 +121,34 @@ public class AbuseReport{
 		
 		Anchor anchorTarget = new Anchor("Abuse report - Public Log Number " + this.logID);
 		anchorTarget.setName("BackToTop");
-
 		Paragraph paragraph1 = new Paragraph();
-		paragraph1.setSpacingBefore(50);
+		paragraph1.setSpacingAfter(5);
 		paragraph1.add(anchorTarget);
 		document.add(paragraph1);
 		
-		/* TODO - write data to pdf here */
+		Font font = FontFactory.getFont(FontFactory.TIMES, 10);
+		
 		ReportBeanOperations rbo = new ReportBeanOperations();
 		ReportBean rb = rbo.getReport(this.logID);
 		document.add(new Paragraph("Reporter Name: " + rb.getReporterFirst() 
-				+ " " + rb.getReporterLast(), 
-				FontFactory.getFont(FontFactory.TIMES, 12)));
-		document.add(new Paragraph("Reporter Address: " + rb.getReportAddr(),
-				FontFactory.getFont(FontFactory.TIMES, 12)));
-		document.add(new Paragraph("Reporter Phone #: " + rb.getReportPhone(),
-				FontFactory.getFont(FontFactory.TIMES, 12)));
+				+ " " + rb.getReporterLast(), font));
+		document.add(new Paragraph("Reporter Address: " + rb.getReportAddr(), font));
+		document.add(new Paragraph("Reporter Phone #: " + rb.getReportPhone(), font));
+		document.add(new Paragraph("\n"));
 		
 		document.add(new Paragraph("Abuser Name: " + rb.getAbuserFirst() 
-				+ " " + rb.getAbuserLast(), 
-				FontFactory.getFont(FontFactory.TIMES, 12)));
-		document.add(new Paragraph("Abuser Address: " + rb.getAbuserAddr(),
-				FontFactory.getFont(FontFactory.TIMES, 12)));
-		document.add(new Paragraph("Abuser Phone #: " + rb.getAbuserPhone(),
-				FontFactory.getFont(FontFactory.TIMES, 12)));
+				+ " " + rb.getAbuserLast(), font));
+		document.add(new Paragraph("Abuser Address: " + rb.getAbuserAddr(), font));
+		document.add(new Paragraph("Abuser Phone #: " + rb.getAbuserPhone(), font));
+		document.add(new Paragraph("\n"));
 		
 		document.add(new Paragraph("Victim Name: " + rb.getVictimFirst() 
-				+ " " + rb.getVictimLast(), 
-				FontFactory.getFont(FontFactory.TIMES, 12)));
-		document.add(new Paragraph("Victim Address: " + rb.getVictimAddr(),
-				FontFactory.getFont(FontFactory.TIMES, 12)));
-		document.add(new Paragraph("Victim Phone #: " + rb.getVictimPhone(),
-				FontFactory.getFont(FontFactory.TIMES, 12)));
+				+ " " + rb.getVictimLast(), font));
+		document.add(new Paragraph("Victim Address: " + rb.getVictimAddr(), font));
+		document.add(new Paragraph("Victim Phone #: " + rb.getVictimPhone(), font));
 		
 		document.close();
+		
 		return filename;
 	}
 	
