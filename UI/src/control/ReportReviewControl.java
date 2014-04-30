@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ReportBean;
 import model.ReportBeanOperations;
+import classes.AuditTrail;
 
 @WebServlet("/ReportReviewControl")
 public class ReportReviewControl extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+		AuditTrail at = new AuditTrail();
 		try {
 			String logID = request.getParameter("logID");
 			String userName = request.getParameter("username");
@@ -37,6 +39,7 @@ public class ReportReviewControl extends HttpServlet {
 			request.setAttribute("abuserPhone", rb.getAbuserPhone());
 			request.setAttribute("abuserAddr", rb.getAbuserAddr());
 			
+			at.trackViewAbuseReport(userName,logID,String.valueOf(System.currentTimeMillis()));
 			getServletContext().getRequestDispatcher(
 					"/ReportReview.jsp").forward(request, response);
 

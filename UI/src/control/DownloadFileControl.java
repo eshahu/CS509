@@ -19,13 +19,14 @@ import com.itextpdf.text.DocumentException;
 
 import model.DBUtil;
 import classes.AbuseReport;
+import classes.AuditTrail;
 import classes.Supervisor;
 
 @WebServlet("/DownloadFileControl")
 public class DownloadFileControl extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		AuditTrail at = new AuditTrail();
     	System.out.println("download file control");
 		String logID = request.getParameter("logID").trim(); 
 		
@@ -66,7 +67,7 @@ public class DownloadFileControl extends HttpServlet {
         response.setContentType(mimeType != null? mimeType:"application/octet-stream");
         response.setContentLength((int) file.length());
         response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-         
+       
         ServletOutputStream os = response.getOutputStream();
         byte[] bufferData = new byte[1024];
         int read=0;

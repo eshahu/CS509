@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.ReportBeanOperations;
-import classes.AbuseReport;
-import classes.AnonymousUser;
+import classes.AuditTrail;
 
 @WebServlet("/ReportUpdateControl")
 public class ReportUpdateControl extends HttpServlet {
@@ -17,6 +16,7 @@ public class ReportUpdateControl extends HttpServlet {
 	private static AtomicInteger idCounter = new AtomicInteger();
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+		AuditTrail at = new AuditTrail();
 		try {
 			String logID = request.getParameter("logID");
 			String userName = request.getParameter("username");
@@ -44,6 +44,7 @@ public class ReportUpdateControl extends HttpServlet {
 
 			request.setAttribute("logID", logID);
 			request.setAttribute("userName", userName);
+			at.trackEditAbuseReport(userName,logID,String.valueOf(System.currentTimeMillis()));
 			getServletContext().getRequestDispatcher(
 					"/ReportDetailsControl").forward(request, response);
 
