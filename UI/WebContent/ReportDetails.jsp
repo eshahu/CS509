@@ -61,21 +61,15 @@
 				Abuse Report Details -
 				<%=logID%>
 			</h2>
-			<input type="hidden" name="logID" value="<% out.println(logID); %>">
+			<input type="hidden" name="logID" value="<%=logID%>">
 			<input type="hidden" name="username"
-				value="<% out.println(username); %>">
+				value="<%=username%>">
 			<div class="jumbotron jumptron-inner"
 				onclick="disableBtn('deleteBtn');enableBtn('editBtn');"
 				style="padding: 10px; margin-bottom: 5px;">
 				<input type="radio" name="abuse_report" value="ReportReviewControl"
 					onchange="setRadioBtnState(this)";> Abuse
 				Report
-			</div>
-			<div class="jumbotron jumptron-inner"
-				onclick="disableBtn('deleteBtn');enableBtn('editBtn');"
-				style="padding: 10px; margin-bottom: 5px;">
-				<input type="radio" name="corr_actions" value="CorrectiveActions.jsp"
-					onchange="setRadioBtnState(this)";> CorrectiveActions.txt
 			</div>
 			<%
 				Iterator<File> iterator = files.iterator();
@@ -105,8 +99,8 @@
 		<form class="form-signin" role="form" action="UploadFileControl"
 			method="post" enctype="multipart/form-data">
 			<h2 class="form-purpose-heading">Upload New File</h2>
-			<input type="hidden" name="logID" value="<% out.println(logID); %>">
-			<input type="hidden" name="username" value="<% out.println(username); %>">
+			<input type="hidden" name="logID" value="<%=logID%>">
+			<input type="hidden" name="username" value="<%=username%>">
 			<input type="file" class="form-control" name="file"
 				placeholder="Select file" required="" autofocus=""> <br>
 			<button class="btn btn-lg btn-primary" type="submit">Upload</button>
