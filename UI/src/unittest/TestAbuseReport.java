@@ -59,6 +59,20 @@ public class TestAbuseReport {
 		assertFalse(secresult);	
 	}
 	
+	
+	/**
+	 * Check that get correct User
+	 *
+	 */
+	@Test
+	public void testGetUser() {
+		AbuseReport aReport = Mockito.mock(AbuseReport.class);
+		User aUser = Mockito.mock(User.class);
+		Mockito.when(aReport.getUser()).thenReturn(aUser);
+		User result = aReport.getUser();
+		assertEquals(result, aUser);	
+	}
+	
 	/**
 	 * Check the FileNames retrieved are the correct one
 	 *
