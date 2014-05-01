@@ -21,17 +21,9 @@
 	String username = (String) request.getAttribute("userName");		
 %>
 <%@ include file="header.jsp"%>
-<script>
-function navigateBtn(btn) {
-		var form = btn.parentNode;
-		form.target = "";
-		form.action = 'DownloadFileControl';
-		form.submit();
-	}
-</script>
 
 <div class="jumbotron">
-	<form class="form-create" action="ReportReviewControl" role="form" method="POST">
+	<form class="form-create" action="ReportUpdateControl" role="form" method="POST">
 		<h2>Abuse Report Review</h2>
 		<h4>Reporter Information:</h4>
 		<div class="jumbotron" style="background-color:white;padding:10px">
@@ -74,7 +66,6 @@ function navigateBtn(btn) {
 			<input type="hidden" name="username" value="<% out.println(username); %>">
 			<input type="hidden" name="abuse_report" value="ReportReview.jsp">
 		
-		<button class="btn btn-lg btn-primary" onclick="navigateBtn(this);" type="submit">Review As PDF</button>
 		<button class="btn btn-lg btn-primary" type="submit">Save Changes</button>
 	</form>
 </div>

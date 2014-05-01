@@ -1,58 +1,47 @@
 package control;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ReportBean;
 import model.ReportBeanOperations;
-import classes.AbuseReport;
-import classes.AnonymousUser;
+import classes.AuditTrail;
 
 @WebServlet("/ReportReviewControl")
 public class ReportReviewControl extends HttpServlet {
-
-	private static AtomicInteger idCounter = new AtomicInteger();
-
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
-
+		AuditTrail at = new AuditTrail();
 		try {
-			String reporterFirst = request.getParameter("reporterFirst");
-			String reporterLast = request.getParameter("reporterLast");
-			String reporterPhone = request.getParameter("reporterPhone");
-			String reporterAddr = request.getParameter("reporterAddr");
-
-			String victimFirst = request.getParameter("victimFirst");
-			String victimLast = request.getParameter("victimLast");
-			String victimPhone = request.getParameter("victimPhone");
-			String victimAddr = request.getParameter("victimAddr");
-
-			String abuserFirst = request.getParameter("abuserFirst");
-			String abuserLast = request.getParameter("abuserLast");
-			String abuserPhone = request.getParameter("abuserPhone");
-			String abuserAddr = request.getParameter("abuserAddr");
-
+			String logID = request.getParameter("logID");
+			String userName = request.getParameter("username");
+			
 			ReportBeanOperations rbo = new ReportBeanOperations();
-			rbo.addReport(reporterFirst, reporterLast, reporterPhone,
-					reporterAddr, victimFirst, victimLast, victimPhone,
-					victimAddr, abuserFirst, abuserPhone, abuserPhone,
-					abuserAddr);
-
-			AnonymousUser aUser = new AnonymousUser(
-					reporterFirst.concat(reporterLast));
-
-			String logID = String.valueOf(idCounter.getAndIncrement());
-			AbuseReport aReport = new AbuseReport(logID,
-					abuserFirst.concat(abuserLast), aUser, false);
-			String userName = reporterFirst.concat(reporterLast);
+			ReportBean rb = rbo.getReport(logID);
 
 			request.setAttribute("logID", logID);
 			request.setAttribute("userName", userName);
+			
+			request.setAttribute("reporterFirst", rb.getReporterFirst());
+			request.setAttribute("reporterLast", rb.getReporterLast());
+			request.setAttribute("reporterPhone", rb.getReportPhone());
+			request.setAttribute("reporterAddr", rb.getReportAddr());
+
+			request.setAttribute("victimFirst", rb.getVictimFirst());
+			request.setAttribute("victimLast", rb.getVictimLast());
+			request.setAttribute("victimPhone", rb.getVictimPhone());
+			request.setAttribute("victimAddr", rb.getVictimAddr());
+
+			request.setAttribute("abuserFirst", rb.getAbuserFirst());
+			request.setAttribute("abuserLast", rb.getAbuserLast());
+			request.setAttribute("abuserPhone", rb.getAbuserPhone());
+			request.setAttribute("abuserAddr", rb.getAbuserAddr());
+			
+			at.trackViewAbuseReport(userName,logID,String.valueOf(System.currentTimeMillis()));
 			getServletContext().getRequestDispatcher(
-					"/ReportDetailsControl?logID=" + logID + "&username="
-							+ userName).forward(request, response);
+					"/ReportReview.jsp").forward(request, response);
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

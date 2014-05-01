@@ -45,7 +45,10 @@ body {
 					src="http://www.qiidd.org/wp-content/uploads/2012/02/massachusetts-seal.gif">
 
 				<a class="navbar-brand" href="#">DDS Agency Reporting and
-					Management System</a>
+					Management System</a> 
+					
+				<a class="navbar-brand" style="float:left;display:block;" href="home.jsp">Home</a>
+				
 			</div>
 		</div>
 	</div>

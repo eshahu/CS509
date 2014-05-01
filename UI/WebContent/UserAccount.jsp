@@ -1,16 +1,5 @@
 <%@ include file="header.jsp"%>
 
-<div class="row">
-	<div class="jumbotron col-md-12">
-		<form class="form-signin" role="form">
-			<h2 class="form-purpose-heading">Search by Public Log Number</h2>
-			<input type="text" class="form-control"
-				placeholder="Public Log Number" required="" autofocus=""> <br>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-		</form>
-	</div>
-</div>
-
 <%
 	String username = (String) request.getAttribute("username");
 	//MVC V does not need to call model
@@ -47,17 +36,17 @@
 
 			//Previous page
 			if (pageNow != 1) {
-				out.println("<a href=ReportControl?pageNow=" + (pageNow - 1)
+				out.println("<a href=ReportControl?username=" + username  + "&pageNow=" + (pageNow - 1)
 						+ ">PREV</a>");
 			}
 			//show URL
 			for (int i = pageNow; i <= pageNow + 4 && i <= pageCount; i++) {
-				out.println("<a href=ReportControl?pageNow=" + i + ">[" + i
+				out.println("<a href=ReportControl?username=" + username  + "&pageNow=" + i + ">[" + i
 						+ "]</a>");
 			}
 			//Next page
 			if (pageNow != pageCount) {
-				out.println("<a href=ReportControl?pageNow=" + (pageNow + 1)
+				out.println("<a href=ReportControl?username=" + username  + "&pageNow=" + (pageNow + 1)
 						+ ">NEXT</a>");
 			}
 		%>
@@ -65,7 +54,8 @@
 		<!-- jump to one specific page -->
 		<form class="form-signin" role="form" action="ReportControl">
 			jump to page:
-			<input type="text" class="form-control" name="pageNow"> <br>
+			<input type="text" class="form-control" name="pageNow">
+			<input type="hidden" class="form-control" name="username" value=<%=username%>> <br>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 		</form>
 	</div>

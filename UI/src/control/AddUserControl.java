@@ -19,7 +19,6 @@ public class AddUserControl extends HttpServlet {
 			String first = request.getParameter("first");
 			String last = request.getParameter("last");
 			String email = request.getParameter("email");
-			// System.out.println(first);
 
 			Admin admin = new Admin("Admin@admin.com", "password");
 			admin.addUser(first, last, email);

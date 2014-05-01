@@ -69,7 +69,7 @@ public class UserBeanOperations {
 			conn = DBUtil.getConnection();
 			String sql = "update supervisor set password='" + p + "' ,email= '"
 					+ e + "',grade='" + g + "' where userID='" + id + "'";
-			System.out.println(sql);
+			
 			pstmt = conn.prepareStatement(sql);
 			int num = pstmt.executeUpdate();
 			if (num == 1) {

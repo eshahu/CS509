@@ -19,13 +19,14 @@ import com.itextpdf.text.DocumentException;
 
 import model.DBUtil;
 import classes.AbuseReport;
+import classes.AuditTrail;
 import classes.Supervisor;
 
 @WebServlet("/DownloadFileControl")
 public class DownloadFileControl extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		AuditTrail at = new AuditTrail();
     	System.out.println("download file control");
 		String logID = request.getParameter("logID").trim(); 
 		
@@ -33,13 +34,11 @@ public class DownloadFileControl extends HttpServlet {
 		
 		for (Entry<String, String[]> entry : request.getParameterMap().entrySet()) {
 		    String name = entry.getKey();
-	    	System.out.println(name);
 		    if (name.contains("Letter_")) {
 		    	dirname = DBUtil.FILESERVER_DIR + "\\" + logID + "\\";
 		    	fileName = name.replace("Letter_","");
 		    }
 		    else if (name.contains("abuse_report")) {
-		    	System.out.println("abuse report");
 		    	dirname = DBUtil.FILESERVER_DIR + "\\" ;
 		    	AbuseReport report = new AbuseReport(logID);
 		    	try {
@@ -50,7 +49,6 @@ public class DownloadFileControl extends HttpServlet {
 				}
 		    }
 		    else if (name.contains("corr_actions")) {
-		    	System.out.println("abuse report");
 		    	dirname = DBUtil.FILESERVER_DIR + "\\" ;
 		    	AbuseReport report = new AbuseReport(logID);
 		    	try {
@@ -59,7 +57,6 @@ public class DownloadFileControl extends HttpServlet {
 					System.out.println("Failed to generate PDF!");
 					e.printStackTrace();
 				}
-		    	System.out.println("Corr");
 		    }
 		}
 		
@@ -70,7 +67,7 @@ public class DownloadFileControl extends HttpServlet {
         response.setContentType(mimeType != null? mimeType:"application/octet-stream");
         response.setContentLength((int) file.length());
         response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-         
+       
         ServletOutputStream os = response.getOutputStream();
         byte[] bufferData = new byte[1024];
         int read=0;

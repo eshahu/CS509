@@ -10,6 +10,20 @@ public class ReportBean {
 	private String dr; //decision report
 	private String ca; //corrective action
 	private String dl; //disposition letter
+	
+	private String reporterFirst;
+	private String reporterLast;
+	private String reportPhone;
+	private String reportAddr;
+	private String victimFirst;
+	private String victimLast;
+	private String victimPhone;
+	private String victimAddr;
+	private String abuserFirst;
+	private String abuserLast;
+	private String abuserPhone;
+	private String abuserAddr;
+	
 	public int getLogNumber() {
 		return logNumber;
 	}
@@ -63,5 +77,77 @@ public class ReportBean {
 	}
 	public void setDl(String dl) {
 		this.dl = dl;
+	}
+	public String getReporterFirst() {
+		return reporterFirst;
+	}
+	public void setReporterFirst(String reporterFirst) {
+		this.reporterFirst = reporterFirst;
+	}
+	public String getReporterLast() {
+		return reporterLast;
+	}
+	public void setReporterLast(String reporterLast) {
+		this.reporterLast = reporterLast;
+	}
+	public String getReportPhone() {
+		return reportPhone;
+	}
+	public void setReportPhone(String reportPhone) {
+		this.reportPhone = reportPhone;
+	}
+	public String getReportAddr() {
+		return reportAddr;
+	}
+	public void setReportAddr(String reportAddr) {
+		this.reportAddr = reportAddr;
+	}
+	public String getVictimFirst() {
+		return victimFirst;
+	}
+	public void setVictimFirst(String victimFirst) {
+		this.victimFirst = victimFirst;
+	}
+	public String getVictimLast() {
+		return victimLast;
+	}
+	public void setVictimLast(String victimLast) {
+		this.victimLast = victimLast;
+	}
+	public String getVictimPhone() {
+		return victimPhone;
+	}
+	public void setVictimPhone(String victimPhone) {
+		this.victimPhone = victimPhone;
+	}
+	public String getVictimAddr() {
+		return victimAddr;
+	}
+	public void setVictimAddr(String victimAddr) {
+		this.victimAddr = victimAddr;
+	}
+	public String getAbuserFirst() {
+		return abuserFirst;
+	}
+	public void setAbuserFirst(String abuserFirst) {
+		this.abuserFirst = abuserFirst;
+	}
+	public String getAbuserLast() {
+		return abuserLast;
+	}
+	public void setAbuserLast(String abuserLast) {
+		this.abuserLast = abuserLast;
+	}
+	public String getAbuserPhone() {
+		return abuserPhone;
+	}
+	public void setAbuserPhone(String abuserPhone) {
+		this.abuserPhone = abuserPhone;
+	}
+	public String getAbuserAddr() {
+		return abuserAddr;
+	}
+	public void setAbuserAddr(String abuserAddr) {
+		this.abuserAddr = abuserAddr;
 	}
 }
