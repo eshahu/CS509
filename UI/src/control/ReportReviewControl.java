@@ -40,6 +40,7 @@ public class ReportReviewControl extends HttpServlet {
 			request.setAttribute("abuserAddr", rb.getAbuserAddr());
 			
 			at.trackViewAbuseReport(userName,logID,String.valueOf(System.currentTimeMillis()));
+			System.out.println(logID);
 			getServletContext().getRequestDispatcher(
 					"/ReportReview.jsp").forward(request, response);
 

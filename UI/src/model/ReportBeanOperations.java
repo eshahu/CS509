@@ -141,7 +141,7 @@ public class ReportBeanOperations {
 		
 		boolean b = update(logID, "ReporterFirst", reporterFirst) &&
 				update(logID, "ReporterLast", reporterLast) &&
-				update(logID, "ReportPhone", reporterPhone) &&
+				update(logID, "ReporterPhone", reporterPhone) &&
 				update(logID, "ReporterAddr", reporterAddr) &&
 				update(logID, "VictimFirst", victimFirst) &&
 				update(logID, "VictimLast", victimLast) &&
